@@ -6,8 +6,6 @@ open BenchmarkDotNet.Running
 
 [<MemoryDiagnoser>]
 type Bench() =
-    
-
     [<Benchmark>]
     member _.Benchmark() = ()
 
