@@ -1,6 +1,5 @@
 ﻿module FSharpBenchmarks
 
-open System.Collections.Immutable
 open BenchmarkDotNet.Attributes
 open BenchmarkDotNet.Running
 
