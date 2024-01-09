@@ -12,14 +12,21 @@ type Bench() =
     member _.InterpolatedStringCurrent() = $"hello {world}"
 
     [<Benchmark>]
-    member _.Impl1() = String.Format("hello {0}", world)
+    member _.StringFormat() = String.Format("hello {0}", world)
 
     [<Benchmark>]
-    member _.Impl2() =
+    member _.StringBuilder() =
         let sb = Text.StringBuilder()
         sb.Append("hello") |> ignore
         sb.Append(world) |> ignore
         sb.ToString()
+
+    [<Benchmark>]
+    member _.DefaultInterpolatedStringHandler() =
+        let sb = System.Runtime.CompilerServices.DefaultInterpolatedStringHandler(1, 1)
+        sb.AppendLiteral("hello")
+        sb.AppendFormatted(world)
+        sb.ToStringAndClear()
 
 [<EntryPoint>]
 let main argv =
